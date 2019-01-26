@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetproduction;
+package Elements;
 
 /**
  *
  * @author trongvo
  */
-public class Texte {
+public class Produit extends Element {
     
 }
