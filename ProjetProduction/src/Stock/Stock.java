@@ -10,5 +10,14 @@ package Stock;
  * @author trongvo
  */
 public class Stock {
+    private HashMap<Integer,Element>;
+    
+public addElements(){
+}
+   
+
+    
+public String toString(){
+}    
     
 }
