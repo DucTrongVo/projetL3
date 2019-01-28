@@ -18,4 +18,5 @@ public class Chaine {
     private Element[] sortie;
     private int indiceSortie;
     private int[] QuantiteS;
+    private int NivActive;
 }
