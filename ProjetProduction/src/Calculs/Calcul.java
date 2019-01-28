@@ -12,14 +12,13 @@ package Calculs;
 public class Calcul {
     
     /**
-     * methode pour tester
-     * teste
+     * methode pour soustraire le stock
      * 
      */
     public static void soustraireStock(){}; 
     
     /**
-     * 
+     * Méthode pour mettre en stock les nouveaux produits
      */
     public static void additionStock(){};
 }
