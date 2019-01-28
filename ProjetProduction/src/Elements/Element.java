@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe mère qui représente tout les matières qui servent à la production
+ * et des produits
  */
 package Elements;
 
@@ -10,5 +9,14 @@ package Elements;
  * @author trongvo
  */
 public abstract class Element {
+    protected String CodeE;
+    protected String nomE;
+    protected int QuantiteE;
+    protected String UMesure;
+    protected int prixAchat;
+    protected int prixVente;
+    
     
 }
+
+

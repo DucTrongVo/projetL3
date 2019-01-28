@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe de la chaine de production
  */
 package Chaine;
+
+import Elements.Element;
 
 /**
  *
  * @author trongvo
  */
 public class Chaine {
-    
+    private String CodeC;
+    private String nomC;
+    private Element[] entree;
+    private int[] QuantiteE;
+    private int indiceEntree;
+    private Element[] sortie;
+    private int indiceSortie;
+    private int[] QuantiteS;
 }
