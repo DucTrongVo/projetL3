@@ -18,4 +18,13 @@ public class Chaine {
     private Element[] sortie;
     private int indiceSortie;
     private int[] QuantiteS;
+    private int NivActive;
+
+    public Chaine(String CodeC, String nomC) {
+        this.CodeC = CodeC;
+        this.nomC = nomC;
+        this.NivActive = 0;
+    }
+    
+    
 }

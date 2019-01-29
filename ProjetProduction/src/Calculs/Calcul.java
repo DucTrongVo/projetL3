@@ -1,9 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe contient des fonctions qui servent à la 
+ * calculation de la production
  */
 package Calculs;
+
+import Elements.Element;
+import Stock.Stock;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *
@@ -11,15 +16,28 @@ package Calculs;
  */
 public class Calcul {
     
+    
+    public boolean possibleProduction() {
+        boolean possible = true;
+        return possible;
+    }
+    
     /**
-     * methode pour tester
-     * teste
+     * methode pour enleveer la quantité de matière
+     * nécessaire pour la production du stocl
      * 
      */
-    public static void soustraireStock(){}; 
+    public void soustraireStock(Element e, int Quantite, Stock s){
+        for(Element i : s.getStock().keySet()) {
+            if(i.equals(e)) {
+                i.setQuantiteE(i.getQuantiteE() - Quantite);
+                }
+            }
+        } 
     
     /**
      * 
      */
-    public static void additionStock(){};
+    public void additionStock(){
+    }
 }

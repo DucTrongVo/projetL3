@@ -4,9 +4,17 @@
  */
 package Elements;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
- * @author trongvo
+ * 
  */
 public abstract class Element {
     protected String CodeE;
@@ -16,6 +24,103 @@ public abstract class Element {
     protected int prixAchat;
     protected int prixVente;
     
+    /**
+     * Fonction qui fixe la valeur du CodeE avec 
+     * le valeur passer en paramètre
+     * @param CodeE Le code de l'élément à fixé
+     * @return Nouveau valeur du CodeE correspond au valeur passé en paramètre
+     */
+    public String setCodeE(String CodeE){
+        return this.CodeE = CodeE;
+    }
+    
+    /**
+     * Fonction qui fixe la valeur du nomE avec 
+     * le valeur passer en paramètre
+     * @param nomE Le nom de l'élément à fixé
+     * @return Nouveau valeur du nomE correspond au valeur passé en paramètre
+     */
+    public String setnomE(String nomE){
+        return this.nomE = nomE;
+    }
+    
+    /**
+     * Fonction qui fixe la valeur du quantité avec 
+     * le valeur passer en paramètre
+     * @param quantite la quantité à fixé
+     * @return Nouveau valeur du quantiteE correspond au valeur passé en paramètre
+     */
+    public int setQuantiteE(int quantite){
+        return this.QuantiteE = quantite;
+    }
+    
+    /**
+     * Fonction qui fixe la valeur de l'unité de mesure avec 
+     * le valeur passer en paramètre
+     * @param umesure l'unité de mesure à fixé
+     * @return Nouveau valeur du UMesure correspond au valeur passé en paramètre
+     */
+    public String setUniteMeusre(String umesure){
+        return this.UMesure = umesure;
+    }
+    
+    /**
+     * Fonction qui fixe la valeur dprix d'achat avec 
+     * le valeur passer en paramètre
+     * @param prix prix d'achat à fixer
+     * @return Nouveau valeur du prixAchat correspond au valeur passé en paramètre
+     */
+    public int setprixAchat(int prix){
+        return this.prixAchat = prix;
+    }
+    
+    /**
+     * Fonction qui fixe la valeur drix de vendre avec 
+     * le valeur passer en paramètre
+     * @param prix prix de vendre à fixé
+     * @return Nouveau valeur du prixVendre correspond au valeur passé en paramètre
+     */
+    public int setprixVente(int prix){
+        return this.prixVente = prix;
+    }
+
+    public String getCodeE() {
+        return CodeE;
+    }
+
+    public String getNomE() {
+        return nomE;
+    }
+
+    public int getQuantiteE() {
+        return QuantiteE;
+    }
+
+    public String getUMesure() {
+        return UMesure;
+    }
+
+    public int getPrixAchat() {
+        return prixAchat;
+    }
+
+    public int getPrixVente() {
+        return prixVente;
+    }
+    
+    /**
+     * Fonction permet d'écrire dans le fichier dont le nom passé en paramètre
+     * les attributs de l'élémént
+     * @param fichier le nom du fichier ou on veut ajouter l'élément (elements.csv)
+     */
+    public void ecrireElementListe(String fichier){
+        Scanner sc = new Scanner(System.in);
+        try (FileWriter writer = new FileWriter(fichier,true)){
+            writer.write(this.CodeE+";"+this.nomE+";"+this.QuantiteE+";"+this.UMesure+";"+this.prixAchat+";"+this.prixVente);          
+        } catch (IOException ex) {
+            Logger.getLogger(Element.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }
 
