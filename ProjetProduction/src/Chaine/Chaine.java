@@ -7,7 +7,16 @@ import Elements.Element;
 
 /**
  *
- * @author trongvo
+ * @author trongvo 
+ * @CodeC Le code de la chaîne 
+ * @nomC Nom de la chaîne
+ * @entree[] Les elements entree dans la chaîne
+ * @QuantiteE[] Quantite de chaque objets
+ * @indiceEntree L'indice pour manipuler le tableau d'elements entre dans la chaine
+ * @sortie[] Les elements produit dans la chaine 
+ * @indiceSortie indice pour manipuler le tableau de sortie 
+ * @QuantiteS[] La quantite de chaque elements en sortie
+ * @NivActive Le niveau d'activation d'une chaine
  */
 public class Chaine {
     private String CodeC;
@@ -20,6 +29,7 @@ public class Chaine {
     private int[] QuantiteS;
     private int NivActive;
 
+
     public Chaine(String CodeC, String nomC) {
         this.CodeC = CodeC;
         this.nomC = nomC;
@@ -27,4 +37,5 @@ public class Chaine {
     }
     
     
+
 }

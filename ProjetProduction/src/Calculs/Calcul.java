@@ -25,6 +25,7 @@ public class Calcul {
     /**
      * methode pour enleveer la quantité de matière
      * nécessaire pour la production du stocl
+
      * 
      */
     public void soustraireStock(Element e, int Quantite, Stock s){
@@ -36,7 +37,7 @@ public class Calcul {
         } 
     
     /**
-     * 
+     * Méthode pour mettre en stock les nouveaux produits
      */
     public void additionStock(){
     }

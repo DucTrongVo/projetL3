@@ -16,6 +16,16 @@ public class Stock {
     private static int nbElement = 0;
     private static HashMap <Element, Integer> stock = new HashMap<Element,Integer>();
     
+    
+public void addElements(){
+}
+   
+
+    
+public String toString(){
+    return("");
+}    
+    
     public void ajouterStock(Element e, int quantite){
         this.stock.put(e, quantite);
         this.nbElement++;
