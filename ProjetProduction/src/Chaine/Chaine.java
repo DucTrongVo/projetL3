@@ -4,6 +4,7 @@
 package Chaine;
 
 import Elements.Element;
+import java.util.HashMap;
 
 /**
  *
@@ -21,12 +22,8 @@ import Elements.Element;
 public class Chaine {
     private String CodeC;
     private String nomC;
-    private Element[] entree;
-    private int[] QuantiteE;
-    private int indiceEntree;
-    private Element[] sortie;
-    private int indiceSortie;
-    private int[] QuantiteS;
+    private HashMap<Element, Integer> ElementE;
+    private HashMap<Element, Integer> ElementS;
     private int NivActive;
 
 

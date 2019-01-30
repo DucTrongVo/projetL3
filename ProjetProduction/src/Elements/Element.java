@@ -16,14 +16,18 @@ import java.util.logging.Logger;
  *
  * 
  */
-public abstract class Element {
+public class Element {
     protected String CodeE;
     protected String nomE;
     protected int QuantiteE;
     protected String UMesure;
-    protected int prixAchat;
-    protected int prixVente;
+    protected double prixAchat;
+    protected double prixVente;
     
+    
+    public Element(){
+        
+    }
     /**
      * Fonction qui fixe la valeur du CodeE avec 
      * le valeur passer en paramètre
@@ -70,7 +74,7 @@ public abstract class Element {
      * @param prix prix d'achat à fixer
      * @return Nouveau valeur du prixAchat correspond au valeur passé en paramètre
      */
-    public int setprixAchat(int prix){
+    public double setprixAchat(double prix){
         return this.prixAchat = prix;
     }
     
@@ -80,7 +84,7 @@ public abstract class Element {
      * @param prix prix de vendre à fixé
      * @return Nouveau valeur du prixVendre correspond au valeur passé en paramètre
      */
-    public int setprixVente(int prix){
+    public double setprixVente(double prix){
         return this.prixVente = prix;
     }
 
@@ -100,11 +104,11 @@ public abstract class Element {
         return UMesure;
     }
 
-    public int getPrixAchat() {
+    public double getPrixAchat() {
         return prixAchat;
     }
 
-    public int getPrixVente() {
+    public double getPrixVente() {
         return prixVente;
     }
     
@@ -113,14 +117,15 @@ public abstract class Element {
      * les attributs de l'élémént
      * @param fichier le nom du fichier ou on veut ajouter l'élément (elements.csv)
      */
-    public void ecrireElementListe(String fichier){
+    public void ecrireElementListe(){
         Scanner sc = new Scanner(System.in);
-        try (FileWriter writer = new FileWriter(fichier,true)){
+        try (FileWriter writer = new FileWriter("element.csv",true)){
             writer.write(this.CodeE+";"+this.nomE+";"+this.QuantiteE+";"+this.UMesure+";"+this.prixAchat+";"+this.prixVente);          
         } catch (IOException ex) {
             Logger.getLogger(Element.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
 }
 

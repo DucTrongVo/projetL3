@@ -29,11 +29,7 @@ public class Calcul {
      * 
      */
     public void soustraireStock(Element e, int Quantite, Stock s){
-        for(Element i : s.getStock().keySet()) {
-            if(i.equals(e)) {
-                i.setQuantiteE(i.getQuantiteE() - Quantite);
-                }
-            }
+        
         } 
     
     /**
