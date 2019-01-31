@@ -5,7 +5,7 @@
 package Calculs;
 
 import Elements.Element;
-import Stock.Stock;
+import Stock.*;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;

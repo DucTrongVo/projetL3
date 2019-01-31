@@ -11,4 +11,8 @@ package Elements;
  */
 public class ProduitComplexe extends Produit{
     
+    public ProduitComplexe(String CodeE, int Quantite) {
+        super(CodeE, Quantite);
+    }
+    
 }

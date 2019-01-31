@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Elements;
+package Chaine;
+
+import Elements.Element;
+import java.util.List;
 
 /**
  *
  * @author trongvo
  */
-public class ProduitSimple extends Produit {
-    
-    public ProduitSimple(String CodeE, int Quantite) {
-        super(CodeE, Quantite);
-    }
-    
+public interface ChaineP {
+    List<Element> findElement();
 }

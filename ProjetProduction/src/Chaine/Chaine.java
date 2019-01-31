@@ -4,7 +4,13 @@
 package Chaine;
 
 import Elements.Element;
+import static Stock.CsvFileHelper.readCsvFile;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import static javafx.scene.input.KeyCode.SEPARATOR;
 
 /**
  *
@@ -22,17 +28,42 @@ import java.util.HashMap;
 public class Chaine {
     private String CodeC;
     private String nomC;
-    private HashMap<Element, Integer> ElementE;
-    private HashMap<Element, Integer> ElementS;
+    private HashMap<String, Integer> ElementE;
+    private HashMap<String, Integer> ElementS;
     private int NivActive;
 
 
-    public Chaine(String CodeC, String nomC) {
+    public Chaine(String CodeC, String nomC, HashMap<String, Integer> ElementE,HashMap<String, Integer> ElementS) {
         this.CodeC = CodeC;
         this.nomC = nomC;
+        this.ElementE = ElementE;
+        this.ElementS = ElementS;
         this.NivActive = 0;
     }
     
+    public Chaine () {
+        
+    }
     
-
+    
+    public int setNiveauActive(int nb) {
+        return this.NivActive = nb;
+    }
+    public String toString() {
+        String chaine = "";
+        chaine = this.CodeC+" " +this.nomC+" // ";
+        for (String element : this.ElementE.keySet()) {
+            String el = element.toString();
+            String q = this.ElementE.get(el).toString();
+            chaine = chaine +" "+ el+" "+q;
+        }
+        
+        for (String element : this.ElementS.keySet()){
+            String el = element.toString();
+            String q = this.ElementS.get(el).toString();
+            chaine = chaine +" // "+ el+" "+q;
+        }
+        
+        return (chaine);
+    }
 }

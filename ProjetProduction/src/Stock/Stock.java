@@ -1,89 +1,96 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Stock;
 
 import Elements.Element;
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.lang.model.util.Elements;
+import static Stock.CsvFileHelper.readCsvFile;
+
 
 /**
  *Classe qui représente le stock de tout les
  * matière première et produit
  */
-public class Stock {
+public class Stock implements StockP{
+
     private static int nbElement = 0;
-    private static HashMap <Element, Integer> stock = new HashMap<Element,Integer>();
+    private final static String RESOURCES_PATH = "/home/trongvo/NetBeansProjects/projetL3-master/ProjetProduction/src/";
+    private final static String ELEMENTS_FILE_NAME = "elements.csv";
+    private final static char SEPARATOR=';';
     
     
-public void addElements(){
-}
+    public Stock() {
+    }
+    
+    
+    public void addElements(){
+    }
    
 
     
-public String toString(){
-    return("");
-}    
+  
     
-    public void ajouterStock(Element e, int quantite){
-        this.stock.put(e, quantite);
-        this.nbElement++;
-    }
+   
 
     public static int getNbElement() {
         return nbElement;
     }
 
-    public static HashMap<Element, Integer> getStock() {
-        return stock;
+   
+    public List<Element> findElement() {
+
+        final List<String[] > data = readCsvFile(RESOURCES_PATH + ELEMENTS_FILE_NAME, SEPARATOR);
+
+        final List<Element> elements = dataToElements(data);
+
+        return elements;
     }
+ 
+
     
     
-    public void lireElement()
-    {
-        try (BufferedReader br = new BufferedReader(new FileReader("elements.csv"))){
-            String line;
-            while((line = br.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(line,";");
-                while(st.hasMoreTokens()) {
-                    for(int i=0;i<6;i++){
-                        st.nextToken();
-                    }
-                    Element el = new Element();
-                    el.setCodeE(st.nextToken());
-                    el.setnomE(st.nextToken());
-                    el.setQuantiteE(Integer.parseInt(st.nextToken()));
-                    el.setUniteMeusre(st.nextToken());
-                    el.setprixAchat(Double.parseDouble(st.nextToken()));
-                    el.setprixVente(Double.parseDouble(st.nextToken()));
-                    this.stock.put(el, el.getQuantiteE());
-                    
-                }
-            }
-          
-        } catch (IOException ex) {
-            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+    private List<Element> dataToElements(List<String[]> data){
+
+        final List<Element> elements = new ArrayList<Element>();
+        for (String[] oneData : data) {
+            final String code = oneData[0];
+            final String nom = oneData[1];
+            final String quantiteSTR = oneData[2];
+            final String  unite = oneData[3];
+            final String prixAchatSTR= oneData[4];
+            final String prixVenteSTR= oneData[5];
+            
+            final Integer quantite = Integer.parseInt(quantiteSTR);
+            final int prixAchat;
+            prixAchat = Integer.parseInt(prixAchatSTR);
+            final int prixVente;
+            prixVente = Integer.parseInt(prixVenteSTR);
+            final Element element= new Element(code,nom,quantite,unite,prixAchat,prixVente);
+            elements.add(element);
         }
+        return elements;
     }
     
-    public void afficheStock()
-    {
-        Iterator iterator = stock.entrySet().iterator();
-        while (iterator.hasNext()) {
-          Map.Entry mapentry = (Map.Entry) iterator.next();
-          System.out.println("Element: "+mapentry.getKey()
-                            + " | valeur: " + mapentry.getValue());
-        } 
+    public void afficherListe(List<Element> listeE){
+        Iterator i=listeE.iterator();
+        while(i.hasNext()){
+        Element v = (Element)i.next();
+        System.out.println(v.toString());
+        System.out.println("--------------------------------***");
+      }
     }
-    
+ 
+  
+   
+
 }

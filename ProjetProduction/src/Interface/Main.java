@@ -4,20 +4,33 @@
  * and open the template in the editor.
  */
 package Interface;
-
+import Chaine.Chaine;
+import Elements.Element;
+import Gestion_Chaine.ChaineTotal;
 import Stock.Stock;
+import java.util.List;
+
+
 
 /**
  *
  * @author trongvo
  */
 public class Main {
-    public static void main(String [ ] args){
-        Stock st = new Stock();
+     public static void main(String[] args){
         
-        st.lireElement();
-        
-        st.afficheStock();
-    }
+    /*Stock test =new Stock();
+    List<Element> l = test.findElement();
+    test.afficherListe(l);
+*/
+
+    ChaineTotal ch = new ChaineTotal();
+    List<Chaine> chtest = ch.findChaine();
+    
+    ch.afficheChaine(chtest);
+    
+    
+   
+}
     
 }

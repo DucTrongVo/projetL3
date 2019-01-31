@@ -21,13 +21,24 @@ public class Element {
     protected String nomE;
     protected int QuantiteE;
     protected String UMesure;
-    protected double prixAchat;
-    protected double prixVente;
+    protected int prixAchat;
+    protected int prixVente;
     
     
     public Element(){
         
     }
+
+    public Element(String CodeE, String nomE, int QuantiteE, String UMesure, int prixAchat, int prixVente) {
+        this.CodeE = CodeE;
+        this.nomE = nomE;
+        this.QuantiteE = QuantiteE;
+        this.UMesure = UMesure;
+        this.prixAchat = prixAchat;
+        this.prixVente = prixVente;
+    }
+    
+    
     /**
      * Fonction qui fixe la valeur du CodeE avec 
      * le valeur passer en paramètre
@@ -74,7 +85,7 @@ public class Element {
      * @param prix prix d'achat à fixer
      * @return Nouveau valeur du prixAchat correspond au valeur passé en paramètre
      */
-    public double setprixAchat(double prix){
+    public double setprixAchat(int prix){
         return this.prixAchat = prix;
     }
     
@@ -84,7 +95,7 @@ public class Element {
      * @param prix prix de vendre à fixé
      * @return Nouveau valeur du prixVendre correspond au valeur passé en paramètre
      */
-    public double setprixVente(double prix){
+    public double setprixVente(int prix){
         return this.prixVente = prix;
     }
 
@@ -124,6 +135,10 @@ public class Element {
         } catch (IOException ex) {
             Logger.getLogger(Element.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public String toString() {
+        return (this.CodeE+" "+this.nomE+" "+this.QuantiteE+" "+this.UMesure+" "+this.prixAchat+" "+this.prixVente);
     }
     
     
