@@ -4,11 +4,19 @@
  * and open the template in the editor.
  */
 package Interface;
+import Calculs.Calcul;
 import Chaine.Chaine;
 import Elements.Element;
-import Gestion_Chaine.ChaineTotal;
+import Gestion_Chaine.Usine;
 import Stock.Stock;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
 
 
 
@@ -18,19 +26,36 @@ import java.util.List;
  */
 public class Main {
      public static void main(String[] args){
-        
-    /*Stock test =new Stock();
-    List<Element> l = test.findElement();
-    test.afficherListe(l);
-*/
+         
+        Calcul calcul = new Calcul(); 
+        Stock ELEMENT =new Stock();
+        List<Element> l = ELEMENT.findElement();
+        ELEMENT.afficherListe();
 
-    ChaineTotal ch = new ChaineTotal();
-    List<Chaine> chtest = ch.findChaine();
+
+        Usine usine = new Usine();
+        List<Chaine> chtest = usine.findChaine();
+        usine.afficheChaine();
+     
+       
+     
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Saisir la chaine de production souhaité:");
+        String nomchaine = sc.nextLine();
+        System.out.println("Saisir le niveau d'actionvation:");
+        int nivAc = sc.nextInt();
+        
+        
+        Chaine chaine_temp = usine.getChaineparCode(nomchaine);
+        chaine_temp.setNiveauActive(nivAc);        
+        int res = calcul.efficacite(chaine_temp, ELEMENT);
     
-    ch.afficheChaine(chtest);
+        
+        System.out.println(res);    
+        System.out.println(res + 200);
     
     
-   
-}
     
+    
+    }
 }

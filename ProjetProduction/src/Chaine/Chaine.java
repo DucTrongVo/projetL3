@@ -9,7 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import static javafx.scene.input.KeyCode.SEPARATOR;
 
 /**
@@ -33,7 +35,7 @@ public class Chaine {
     private int NivActive;
 
 
-    public Chaine(String CodeC, String nomC, HashMap<String, Integer> ElementE,HashMap<String, Integer> ElementS) {
+    public Chaine(String CodeC, String nomC, HashMap<String, Integer> ElementE, HashMap<String, Integer> ElementS) {
         this.CodeC = CodeC;
         this.nomC = nomC;
         this.ElementE = ElementE;
@@ -45,24 +47,82 @@ public class Chaine {
         
     }
     
-    
+    public String getCodeC(){
+        return this.CodeC;
+    }
     public int setNiveauActive(int nb) {
         return this.NivActive = nb;
     }
+    
+    public int getNiveauActive() {
+        return this.NivActive;
+    }
+    public HashMap<String, Integer> getElementEntree(){
+        return this.ElementE;
+    }
+    
+    public HashMap<String, Integer> getElementSortie(){
+        return this.ElementS;
+    }
+    
+    
+    /**
+     * Retourne la quantité d'élément passé en paramètre 
+     * utilisé pour la production de la Chaine 
+     * @param e
+     * @return 
+     */
+    public int getNbProduitUtiliser(Element e){
+        int nbProduit = 0;
+        Iterator<Map.Entry<String, Integer>> es = this.ElementE.entrySet().iterator();
+        while(es.hasNext()){
+            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)es.next();
+            
+            if(e.getCodeE().equals(a.getKey())){
+                
+                nbProduit = a.getValue()*this.NivActive;
+            }
+        }
+        return nbProduit;
+    }
+    
+    
+    /**
+     * Retourne la quantité d'élément passé en paramètre
+     * crée apres l'utilisation de la chaine
+     * @param e
+     * @return 
+     */
+    public int getNbProduitCreer(Element e){
+        int nbProduit = 0;
+        Iterator<Map.Entry<String, Integer>> es = this.ElementS.entrySet().iterator();
+        while(es.hasNext()){
+            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)es.next();
+            if(e.getCodeE().equals(a.getKey())){
+                nbProduit = a.getValue()*this.NivActive;
+            }
+        }
+        return nbProduit;
+    }
+    
     public String toString() {
         String chaine = "";
-        chaine = this.CodeC+" " +this.nomC+" // ";
-        for (String element : this.ElementE.keySet()) {
-            String el = element.toString();
-            String q = this.ElementE.get(el).toString();
-            chaine = chaine +" "+ el+" "+q;
+        chaine = this.CodeC+" " +this.nomC+" / ";
+        Iterator<Map.Entry<String, Integer>> ee = this.ElementE.entrySet().iterator();
+        while(ee.hasNext()){
+            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)ee.next();
+            chaine = chaine +" "+a.getKey();
+            String b = Integer.toString(a.getValue());
+            chaine = chaine +" "+b;    
+        }  
+        Iterator<Map.Entry<String, Integer>> es = this.ElementS.entrySet().iterator();
+        while(es.hasNext()){
+            Map.Entry<String, Integer> c = (Map.Entry<String, Integer>)es.next();
+            chaine = chaine+" / "+c.getKey();
+            String d = Integer.toString(c.getValue());
+            chaine = chaine +" "+d;
         }
         
-        for (String element : this.ElementS.keySet()){
-            String el = element.toString();
-            String q = this.ElementS.get(el).toString();
-            chaine = chaine +" // "+ el+" "+q;
-        }
         
         return (chaine);
     }

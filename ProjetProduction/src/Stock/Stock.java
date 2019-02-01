@@ -1,6 +1,7 @@
 
 package Stock;
 
+import Calculs.Calcul;
 import Elements.Element;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.lang.model.util.Elements;
 import static Stock.CsvFileHelper.readCsvFile;
+import java.io.FileWriter;
 
 
 /**
@@ -24,6 +26,7 @@ import static Stock.CsvFileHelper.readCsvFile;
 public class Stock implements StockP{
 
     private static int nbElement = 0;
+    List<Element> Stock;
     private final static String RESOURCES_PATH = "/home/trongvo/NetBeansProjects/projetL3-master/ProjetProduction/src/";
     private final static String ELEMENTS_FILE_NAME = "elements.csv";
     private final static char SEPARATOR=';';
@@ -33,13 +36,7 @@ public class Stock implements StockP{
     }
     
     
-    public void addElements(){
-    }
    
-
-    
-  
-    
    
 
     public static int getNbElement() {
@@ -51,9 +48,9 @@ public class Stock implements StockP{
 
         final List<String[] > data = readCsvFile(RESOURCES_PATH + ELEMENTS_FILE_NAME, SEPARATOR);
 
-        final List<Element> elements = dataToElements(data);
+        this.Stock = dataToElements(data);
 
-        return elements;
+        return Stock;
     }
  
 
@@ -76,21 +73,60 @@ public class Stock implements StockP{
             final int prixVente;
             prixVente = Integer.parseInt(prixVenteSTR);
             final Element element= new Element(code,nom,quantite,unite,prixAchat,prixVente);
+            this.nbElement++;
             elements.add(element);
         }
         return elements;
     }
     
-    public void afficherListe(List<Element> listeE){
-        Iterator i=listeE.iterator();
+    public void afficherListe(){
+        Iterator i=this.Stock.iterator();
         while(i.hasNext()){
-        Element v = (Element)i.next();
-        System.out.println(v.toString());
+        Element e = (Element)i.next();
+        System.out.println(e.toString());
         System.out.println("--------------------------------***");
       }
     }
- 
-  
-   
+    
+    public Element getElementparCode(String e){
+        Element the_one = null;
+        for (Element oneData : this.Stock) {
+            if (oneData.getCodeE().equals(e)){
+                the_one = oneData;
+            } 
+        }   
+        return the_one;
+    
+        
+    }
+    
+    
+    /**
+     * methode pour enleveer la quantité de matière
+     * nécessaire pour la production du stocl
+
+     * 
+     */
+    public void soustraireStock(Element e, int quantite){
+        int nouv_quant = e.getQuantiteE() - quantite;
+        this.getElementparCode(e.getCodeE()).setQuantiteE(nouv_quant);
+        if (nouv_quant < 0){
+            try (FileWriter writer = new FileWriter("liste_achat.csv",true)){
+			writer.write(e.getCodeE()+" "+e.getNomE()+" "+nouv_quant*(-1)+" "+e.getUMesure()+" "+e.getPrixAchat());
+		} catch (IOException ex) { 
+                Logger.getLogger(Calcul.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        }
+        } 
+    
+    /**
+     * Méthode pour mettre en stock les nouveaux produits
+     */
+    public void additionStock(Element e, int quantite){
+        int nouv_quant = e.getQuantiteE() + quantite;
+        this.getElementparCode(e.getCodeE()).setQuantiteE(nouv_quant);
+         
+    }
+    
 
 }

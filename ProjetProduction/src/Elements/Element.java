@@ -115,11 +115,11 @@ public class Element {
         return UMesure;
     }
 
-    public double getPrixAchat() {
+    public int getPrixAchat() {
         return prixAchat;
     }
 
-    public double getPrixVente() {
+    public int getPrixVente() {
         return prixVente;
     }
     
