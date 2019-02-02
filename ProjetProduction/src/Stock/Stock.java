@@ -112,7 +112,8 @@ public class Stock implements StockP{
         this.getElementparCode(e.getCodeE()).setQuantiteE(nouv_quant);
         if (nouv_quant < 0){
             try (FileWriter writer = new FileWriter("liste_achat.csv",true)){
-			writer.write(e.getCodeE()+" "+e.getNomE()+" "+nouv_quant*(-1)+" "+e.getUMesure()+" "+e.getPrixAchat());
+			writer.write(e.getCodeE()+";"+e.getNomE()+";"+nouv_quant*(-1)+";"+e.getUMesure()+";"+e.getPrixAchat()+"\n");
+                        
 		} catch (IOException ex) { 
                 Logger.getLogger(Calcul.class.getName()).log(Level.SEVERE, null, ex);
             } 

@@ -50,12 +50,14 @@ public class Main {
         chaine_temp.setNiveauActive(nivAc);        
         int res = calcul.efficacite(chaine_temp, ELEMENT);
     
-        
-        System.out.println(res);    
-        System.out.println(res + 200);
+        if(res == 0){
+            System.out.println("Production impossible!");
+        }
+        else {
+            System.out.println("L'efficace de la production est: "+res);           
+        }
     
     
-    
-    
+       
     }
 }

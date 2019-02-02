@@ -53,6 +53,12 @@ public class Usine {
         }
         return c;
     }
+    
+    /**
+     * Fonction sert à chargé les chaines de production existent
+     * dans le files "chaines.csv" et les enregistrent dans le DB
+     * @return 
+     */
     public List<Chaine> findChaine() {
 
         final List<String[] > data = readCsvFile(RESOURCES_PATH + CHAINES_FILE_NAME, SEPARATOR);
@@ -84,6 +90,12 @@ public class Usine {
         return element;
     }
     
+    /**
+     * Retourne la liste des Chaines de production
+     * pour utiliser dans la fonction findChaine()
+     * @param data
+     * @return 
+     */
     private List<Chaine> dataToChaine(List<String[]> data){
 
         final List<Chaine> chaines = new ArrayList<>();

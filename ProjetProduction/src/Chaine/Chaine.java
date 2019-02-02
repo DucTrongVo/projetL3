@@ -74,9 +74,9 @@ public class Chaine {
      */
     public int getNbProduitUtiliser(Element e){
         int nbProduit = 0;
-        Iterator<Map.Entry<String, Integer>> es = this.ElementE.entrySet().iterator();
-        while(es.hasNext()){
-            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)es.next();
+        Iterator<Map.Entry<String, Integer>> ee = this.ElementE.entrySet().iterator();
+        while(ee.hasNext()){
+            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)ee.next();
             
             if(e.getCodeE().equals(a.getKey())){
                 
@@ -95,10 +95,14 @@ public class Chaine {
      */
     public int getNbProduitCreer(Element e){
         int nbProduit = 0;
+        
         Iterator<Map.Entry<String, Integer>> es = this.ElementS.entrySet().iterator();
+        
         while(es.hasNext()){
             Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)es.next();
+            
             if(e.getCodeE().equals(a.getKey())){
+                
                 nbProduit = a.getValue()*this.NivActive;
             }
         }

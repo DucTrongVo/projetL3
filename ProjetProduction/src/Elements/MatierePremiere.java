@@ -11,8 +11,8 @@ package Elements;
  */
 public class MatierePremiere extends Element {
     
-    public MatierePremiere(String CodeE, int Quantite) {
-        super(CodeE, Quantite);
+    public MatierePremiere() {
+        super();
     }
     
 }

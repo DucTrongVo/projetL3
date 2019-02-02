@@ -11,8 +11,8 @@ package Elements;
  */
 public class Produit extends Element {
     
-    public Produit(String CodeE, int Quantite) {
-        super(CodeE, Quantite);
+    public Produit() {
+        
     }
     
 }
