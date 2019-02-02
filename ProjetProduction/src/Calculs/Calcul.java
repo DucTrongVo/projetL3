@@ -19,12 +19,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *Classe Calcul pour effectuer les variations sur le stock 
  * @author trongvo
  */
 public class Calcul {
     
     
+    /**
+    *Méthode qui verifie que tous les éléments en entrer ont bien un prix d'achats
+    * @ch chaine sur laquelle on veut savoir si la production est possible
+    *@st Stock à partir du quel on va savoir si c'est possible
+    */
     public boolean possibleProduction(Chaine ch, Stock st) {
         boolean possible = true;
         HashMap<String, Double> liste = ch.getElementEntree();
@@ -40,13 +45,22 @@ public class Calcul {
         return possible;
     }
     
+     /**
+    *Constructeur de la classe Calcul
+    * 
+    */
+    
     public Calcul(){
         
     }
     
    
     
-
+     /**
+    *
+    * Méthode pour calculer l'efficacite d'une chaine c passer en parametre a partir des prix de ventes et d'achats prensent dans le Stock st passer en parametre
+    *
+    */
     
     public double efficacite(Chaine c, Stock st){
         double efficacite = 0;
