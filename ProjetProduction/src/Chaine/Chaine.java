@@ -33,7 +33,11 @@ public class Chaine {
     private HashMap<String, Double> ElementE;
     private HashMap<String, Double> ElementS;
     private int NivActive;
-
+        
+     /**
+    *
+    * Constructeur de la Classe Chaine  avec tous les attirbuts sauf le niveau d'activation
+    */
 
     public Chaine(String CodeC, String nomC, HashMap<String, Double> ElementE, HashMap<String, Double> ElementS) {
         this.CodeC = CodeC;
@@ -43,24 +47,51 @@ public class Chaine {
         this.NivActive = 0;
     }
     
+     /**
+    *
+    * Constructeur par defaut 
+    */
+    
     public Chaine () {
         
     }
+     /**
+    *
+    * Méthode get pour l'attribut CodeC
+    */
     
     public String getCodeC(){
         return this.CodeC;
     }
+     /**
+    *
+    * Méthode set pour l'attribut niveau d'activation 
+    */
     public int setNiveauActive(int nb) {
         return this.NivActive = nb;
     }
     
+     /**
+    *
+    * Méthode get pour l'attribut niveau d'activation
+    */
+    
     public int getNiveauActive() {
         return this.NivActive;
     }
+    
+     /**
+    *
+    * Méthode get pour l'attribut ElementE qui retourne les elements en entre d'une chaine
+    */
     public HashMap<String, Double> getElementEntree(){
         return this.ElementE;
     }
     
+     /**
+    *
+    * Méthode get pour l'attribut ElementS qui retourne les elements en sortie d'une chaine
+    */
     public HashMap<String, Double> getElementSortie(){
         return this.ElementS;
     }
@@ -108,7 +139,10 @@ public class Chaine {
         }
         return nbProduit;
     }
-    
+     /**
+    *
+    * Méthode toString de la Classe Chaine 
+    */
     public String toString() {
         String chaine = "";
         chaine = this.CodeC+" " +this.nomC+" /";
