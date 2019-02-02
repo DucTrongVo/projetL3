@@ -30,12 +30,12 @@ import static javafx.scene.input.KeyCode.SEPARATOR;
 public class Chaine {
     private String CodeC;
     private String nomC;
-    private HashMap<String, Integer> ElementE;
-    private HashMap<String, Integer> ElementS;
+    private HashMap<String, Double> ElementE;
+    private HashMap<String, Double> ElementS;
     private int NivActive;
 
 
-    public Chaine(String CodeC, String nomC, HashMap<String, Integer> ElementE, HashMap<String, Integer> ElementS) {
+    public Chaine(String CodeC, String nomC, HashMap<String, Double> ElementE, HashMap<String, Double> ElementS) {
         this.CodeC = CodeC;
         this.nomC = nomC;
         this.ElementE = ElementE;
@@ -57,11 +57,11 @@ public class Chaine {
     public int getNiveauActive() {
         return this.NivActive;
     }
-    public HashMap<String, Integer> getElementEntree(){
+    public HashMap<String, Double> getElementEntree(){
         return this.ElementE;
     }
     
-    public HashMap<String, Integer> getElementSortie(){
+    public HashMap<String, Double> getElementSortie(){
         return this.ElementS;
     }
     
@@ -72,11 +72,11 @@ public class Chaine {
      * @param e
      * @return 
      */
-    public int getNbProduitUtiliser(Element e){
-        int nbProduit = 0;
-        Iterator<Map.Entry<String, Integer>> ee = this.ElementE.entrySet().iterator();
+    public double getNbProduitUtiliser(Element e){
+        double nbProduit = 0;
+        Iterator<Map.Entry<String, Double>> ee = this.ElementE.entrySet().iterator();
         while(ee.hasNext()){
-            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)ee.next();
+            Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
             
             if(e.getCodeE().equals(a.getKey())){
                 
@@ -93,13 +93,13 @@ public class Chaine {
      * @param e
      * @return 
      */
-    public int getNbProduitCreer(Element e){
-        int nbProduit = 0;
+    public double getNbProduitCreer(Element e){
+        double nbProduit = 0;
         
-        Iterator<Map.Entry<String, Integer>> es = this.ElementS.entrySet().iterator();
+        Iterator<Map.Entry<String, Double>> es = this.ElementS.entrySet().iterator();
         
         while(es.hasNext()){
-            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)es.next();
+            Map.Entry<String, Double> a = (Map.Entry<String, Double>)es.next();
             
             if(e.getCodeE().equals(a.getKey())){
                 
@@ -111,19 +111,19 @@ public class Chaine {
     
     public String toString() {
         String chaine = "";
-        chaine = this.CodeC+" " +this.nomC+" / ";
-        Iterator<Map.Entry<String, Integer>> ee = this.ElementE.entrySet().iterator();
+        chaine = this.CodeC+" " +this.nomC+" /";
+        Iterator<Map.Entry<String, Double>> ee = this.ElementE.entrySet().iterator();
         while(ee.hasNext()){
-            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)ee.next();
+            Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
             chaine = chaine +" "+a.getKey();
-            String b = Integer.toString(a.getValue());
+            String b = Double.toString(a.getValue());
             chaine = chaine +" "+b;    
         }  
-        Iterator<Map.Entry<String, Integer>> es = this.ElementS.entrySet().iterator();
+        Iterator<Map.Entry<String, Double>> es = this.ElementS.entrySet().iterator();
         while(es.hasNext()){
-            Map.Entry<String, Integer> c = (Map.Entry<String, Integer>)es.next();
-            chaine = chaine+" / "+c.getKey();
-            String d = Integer.toString(c.getValue());
+            Map.Entry<String, Double> c = (Map.Entry<String, Double>)es.next();
+            chaine = chaine+" /"+c.getKey();
+            String d = Double.toString(c.getValue());
             chaine = chaine +" "+d;
         }
         

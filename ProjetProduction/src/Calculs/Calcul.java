@@ -25,15 +25,15 @@ import java.util.logging.Logger;
 public class Calcul {
     
     
-    public boolean possibleProduction(Chaine ch) {
+    public boolean possibleProduction(Chaine ch, Stock st) {
         boolean possible = true;
-        HashMap<String, Integer> liste = ch.getElementEntree();
+        HashMap<String, Double> liste = ch.getElementEntree();
         
         int niv = ch.getNiveauActive();
-        Iterator<Map.Entry<String, Integer>> ee = liste.entrySet().iterator();
+        Iterator<Map.Entry<String, Double>> ee = liste.entrySet().iterator();
         while(ee.hasNext()){
-            Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)ee.next();
-            if (Objects.equals(a.getValue(), "NA")){
+            Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
+            if(st.getElementparCode(a.getKey()).getPrixAchat() == 0){
                 possible = false;
             } 
         }     
@@ -48,30 +48,30 @@ public class Calcul {
     
 
     
-    public int efficacite(Chaine c, Stock st){
-        int efficacite = 0;
-        if (this.possibleProduction(c)){
-            int valeurAcheter = 0, valeurVente = 0;
+    public double efficacite(Chaine c, Stock st){
+        double efficacite = 0;
+        
+        if (this.possibleProduction(c,st)){
+            double valeurAcheter = 0, valeurVente = 0;
             String CodeE = "";
             Element e = null;
-            if (this.possibleProduction(c)){
-            Iterator<Map.Entry<String, Integer>> ee = c.getElementEntree().entrySet().iterator();
+            Iterator<Map.Entry<String, Double>> ee = c.getElementEntree().entrySet().iterator();
             while(ee.hasNext()){
-                Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)ee.next();
+                Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
                 e = st.getElementparCode(a.getKey());
                 st.soustraireStock(e, c.getNbProduitUtiliser(e));
                 valeurAcheter = valeurAcheter + c.getNbProduitUtiliser(e)*e.getPrixAchat();   
             }
 
-            Iterator<Map.Entry<String, Integer>> es = c.getElementSortie().entrySet().iterator();
+            Iterator<Map.Entry<String, Double>> es = c.getElementSortie().entrySet().iterator();
             while(es.hasNext()){
-                Map.Entry<String, Integer> a = (Map.Entry<String, Integer>)es.next();
+                Map.Entry<String, Double> a = (Map.Entry<String, Double>)es.next();
 
                 e = st.getElementparCode(a.getKey());
                 st.additionStock(e, c.getNbProduitCreer(e));
                 valeurVente = valeurVente + c.getNbProduitCreer(e)*e.getPrixVente();   
                 }  
-            }
+            
             efficacite = valeurVente - valeurAcheter;
         
         }

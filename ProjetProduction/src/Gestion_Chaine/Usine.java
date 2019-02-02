@@ -81,10 +81,10 @@ public class Usine {
 			System.out.println(e+" erreur écriture!");;
 		}
     }
-    public HashMap<String, Integer> findElement_sub() {
+    public HashMap<String, Double> findElement_sub() {
 
         final List<String[] > data = readCsvFile(RESOURCES_PATH_SUB + SOUS_ELEMENT_FILE_NAME, SEPARATOR_SUB);
-        HashMap<String, Integer> element = dataToHashMap(data);
+        HashMap<String, Double> element = dataToHashMap(data);
         
 
         return element;
@@ -106,13 +106,13 @@ public class Usine {
             final String  EEntre = oneData[2];
             // Utiliser la fonction datatoElement
             this.ecrireSousListe(EEntre);   
-            HashMap<String, Integer>ElE = this.findElement_sub();
+            HashMap<String, Double>ElE = this.findElement_sub();
             
       
             
             final String  ESortie = oneData[3];
             this.ecrireSousListe(ESortie);
-            HashMap<String, Integer> ElS = this.findElement_sub();
+            HashMap<String, Double> ElS = this.findElement_sub();
             
             final Chaine chaine= new Chaine(codeC,nomC,ElE,ElS);
             chaines.add(chaine);
@@ -126,8 +126,8 @@ public class Usine {
      * @param data 
      * @return 
      */
-    public HashMap<String,Integer> dataToHashMap(List<String[]> data){
-        HashMap<String,Integer> element = new HashMap<>();
+    public HashMap<String,Double> dataToHashMap(List<String[]> data){
+        HashMap<String,Double> element = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(SOUS_ELEMENT_FILE_NAME)))
 	{
             String line;
@@ -140,7 +140,7 @@ public class Usine {
                     String quantiteE = st.nextToken();
                     String quantite_num = quantiteE.replace(")","");
                    
-                    int quantite = Integer.parseInt(quantite_num);     
+                    double quantite = Double.parseDouble(quantite_num);     
                     element.put(nomeE_pur,quantite);
                 }
             }
@@ -152,10 +152,10 @@ public class Usine {
     }
     
     public void afficheChaine(){
-        
+        System.out.println("LA LISTE DES CHAINES DE PRODUCTION:");
         for (Chaine ch : this.Chaines){
             System.out.println(ch.toString());
-            System.out.println("----------------------");
+            System.out.println("------------------CHAINES------------------");
         }
     }
 }

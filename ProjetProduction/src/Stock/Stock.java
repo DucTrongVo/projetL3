@@ -67,24 +67,49 @@ public class Stock implements StockP{
             final String prixAchatSTR= oneData[4];
             final String prixVenteSTR= oneData[5];
             
-            final Integer quantite = Integer.parseInt(quantiteSTR);
-            final int prixAchat;
-            prixAchat = Integer.parseInt(prixAchatSTR);
-            final int prixVente;
-            prixVente = Integer.parseInt(prixVenteSTR);
-            final Element element= new Element(code,nom,quantite,unite,prixAchat,prixVente);
+            final Double quantite = Double.parseDouble(quantiteSTR);
+                      
+            if(prixAchatSTR.equals("NA")){
+                String prixAchat = "NA";
+                if(prixVenteSTR.equals("NA")){
+                    String prixVente = "NA";
+                    final Element element= new Element(code,nom,quantite,unite,prixAchat,prixVente);
+                    elements.add(element);
+                }
+                else{
+                    double prixVente = Double.parseDouble(prixVenteSTR);
+                    final Element element= new Element(code,nom,quantite,unite,prixAchat,prixVente);
+                    elements.add(element);
+            }
+            }
+            else{
+                final double prixAchat;
+                prixAchat = Double.parseDouble(prixAchatSTR);
+                if(prixVenteSTR.equals("NA")){
+                    String prixVente = "NA";
+                    final Element element= new Element(code,nom,quantite,unite,prixAchat,prixVente);
+                    elements.add(element);
+                }
+                else{
+                    double prixVente = Double.parseDouble(prixVenteSTR);
+                    final Element element= new Element(code,nom,quantite,unite,prixAchat,prixVente);
+                    elements.add(element);
+                }
+            }
+            
+            
             this.nbElement++;
-            elements.add(element);
         }
         return elements;
     }
     
     public void afficherListe(){
+        System.out.println("LA LISTE DES ÉLÉMENTS:");
         Iterator i=this.Stock.iterator();
         while(i.hasNext()){
         Element e = (Element)i.next();
         System.out.println(e.toString());
-        System.out.println("--------------------------------***");
+        System.out.println("------------------ELEMENT------------------");
       }
     }
     
@@ -107,8 +132,8 @@ public class Stock implements StockP{
 
      * 
      */
-    public void soustraireStock(Element e, int quantite){
-        int nouv_quant = e.getQuantiteE() - quantite;
+    public void soustraireStock(Element e, double quantite){
+        double nouv_quant = e.getQuantiteE() - quantite;
         this.getElementparCode(e.getCodeE()).setQuantiteE(nouv_quant);
         if (nouv_quant < 0){
             try (FileWriter writer = new FileWriter("liste_achat.csv",true)){
@@ -123,11 +148,12 @@ public class Stock implements StockP{
     /**
      * Méthode pour mettre en stock les nouveaux produits
      */
-    public void additionStock(Element e, int quantite){
-        int nouv_quant = e.getQuantiteE() + quantite;
+    public void additionStock(Element e, double quantite){
+        double nouv_quant = e.getQuantiteE() + quantite;
         this.getElementparCode(e.getCodeE()).setQuantiteE(nouv_quant);
          
     }
+    
     
 
 }

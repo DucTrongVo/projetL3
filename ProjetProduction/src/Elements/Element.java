@@ -19,17 +19,27 @@ import java.util.logging.Logger;
 public class Element {
     protected String CodeE;
     protected String nomE;
-    protected int QuantiteE;
+    protected double QuantiteE;
     protected String UMesure;
-    protected int prixAchat;
-    protected int prixVente;
+    protected double prixAchat;
+    protected String prixAchat_str;
+    protected double prixVente;
+    protected String prixVente_str;
     
     
     public Element(){
         
     }
-
-    public Element(String CodeE, String nomE, int QuantiteE, String UMesure, int prixAchat, int prixVente) {
+    /** 
+     * COnstructeur de Element dont on connait tout les prix de vente et achat
+     * @param CodeE
+     * @param nomE
+     * @param QuantiteE
+     * @param UMesure
+     * @param prixAchat
+     * @param prixVente 
+     */
+    public Element(String CodeE, String nomE, double QuantiteE, String UMesure, double prixAchat, double prixVente) {
         this.CodeE = CodeE;
         this.nomE = nomE;
         this.QuantiteE = QuantiteE;
@@ -37,7 +47,60 @@ public class Element {
         this.prixAchat = prixAchat;
         this.prixVente = prixVente;
     }
+    /**
+     * Constructeur dont le prix achat est inconnu
+     * @param CodeE
+     * @param nomE
+     * @param QuantiteE
+     * @param UMesure
+     * @param prixAchat
+     * @param prixVente 
+     */
+    public Element(String CodeE, String nomE, double QuantiteE, String UMesure, String prixAchat, double prixVente) {
+        this.CodeE = CodeE;
+        this.nomE = nomE;
+        this.QuantiteE = QuantiteE;
+        this.UMesure = UMesure;
+        this.prixAchat_str = prixAchat;
+        this.prixVente = prixVente;
+        this.prixVente_str = null;
+    }
     
+    /**
+     * Constructeur dont le prix de vente est inconnu
+     * @param CodeE
+     * @param nomE
+     * @param QuantiteE
+     * @param UMesure
+     * @param prixAchat
+     * @param prixVente 
+     */
+    public Element(String CodeE, String nomE, double QuantiteE, String UMesure, double prixAchat, String prixVente) {
+        this.CodeE = CodeE;
+        this.nomE = nomE;
+        this.QuantiteE = QuantiteE;
+        this.UMesure = UMesure;
+        this.prixAchat = prixAchat;
+        this.prixVente_str = prixVente;
+        this.prixAchat_str = null;
+    }
+    /**
+     * Constructeur dont le prix de vente et achat sont inconnus
+     * @param CodeE
+     * @param nomE
+     * @param QuantiteE
+     * @param UMesure
+     * @param prixAchat
+     * @param prixVente 
+     */
+    public Element(String CodeE, String nomE, double QuantiteE, String UMesure, String prixAchat, String prixVente) {
+        this.CodeE = CodeE;
+        this.nomE = nomE;
+        this.QuantiteE = QuantiteE;
+        this.UMesure = UMesure;
+        this.prixAchat_str = prixAchat;
+        this.prixVente_str = prixVente;
+    }
     
     /**
      * Fonction qui fixe la valeur du CodeE avec 
@@ -65,7 +128,7 @@ public class Element {
      * @param quantite la quantité à fixé
      * @return Nouveau valeur du quantiteE correspond au valeur passé en paramètre
      */
-    public int setQuantiteE(int quantite){
+    public double setQuantiteE(double quantite){
         return this.QuantiteE = quantite;
     }
     
@@ -85,7 +148,7 @@ public class Element {
      * @param prix prix d'achat à fixer
      * @return Nouveau valeur du prixAchat correspond au valeur passé en paramètre
      */
-    public double setprixAchat(int prix){
+    public double setprixAchat(double prix){
         return this.prixAchat = prix;
     }
     
@@ -95,7 +158,7 @@ public class Element {
      * @param prix prix de vendre à fixé
      * @return Nouveau valeur du prixVendre correspond au valeur passé en paramètre
      */
-    public double setprixVente(int prix){
+    public double setprixVente(double prix){
         return this.prixVente = prix;
     }
 
@@ -107,7 +170,7 @@ public class Element {
         return nomE;
     }
 
-    public int getQuantiteE() {
+    public double getQuantiteE() {
         return QuantiteE;
     }
 
@@ -115,11 +178,11 @@ public class Element {
         return UMesure;
     }
 
-    public int getPrixAchat() {
+    public double getPrixAchat() {
         return prixAchat;
     }
 
-    public int getPrixVente() {
+    public double getPrixVente() {
         return prixVente;
     }
     
@@ -138,7 +201,21 @@ public class Element {
     }
     
     public String toString() {
-        return (this.CodeE+" "+this.nomE+" "+this.QuantiteE+" "+this.UMesure+" "+this.prixAchat+" "+this.prixVente);
+        String chaine = "";
+        if((this.prixAchat_str == null) && (this.prixVente_str == null)){
+            chaine = (this.CodeE+" "+this.nomE+" "+this.QuantiteE+" "+this.UMesure+" "+this.prixAchat+" "+this.prixVente);
+        }
+        if(((this.prixAchat_str == "NA")) && (this.prixVente_str == null)){
+            chaine = (this.CodeE+" "+this.nomE+" "+this.QuantiteE+" "+this.UMesure+" "+this.prixAchat_str+" "+this.prixVente);
+        }
+        if((this.prixAchat_str == null) && (this.prixVente_str == "NA")){
+            chaine = (this.CodeE+" "+this.nomE+" "+this.QuantiteE+" "+this.UMesure+" "+this.prixAchat+" "+this.prixVente_str);
+        }
+        
+        if((this.prixAchat_str == "NA") && (this.prixVente_str == "NA")){
+            chaine = (this.CodeE+" "+this.nomE+" "+this.QuantiteE+" "+this.UMesure+" "+this.prixAchat_str+" "+this.prixVente_str);
+        }
+        return chaine;
     }
     
     

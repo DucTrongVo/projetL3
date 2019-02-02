@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package Main;
 import Calculs.Calcul;
 import Chaine.Chaine;
 import Elements.Element;
@@ -37,7 +37,7 @@ public class Main {
         List<Chaine> chtest = usine.findChaine();
         usine.afficheChaine();
      
-       
+        
      
         Scanner sc = new Scanner(System.in);
         System.out.println("Saisir la chaine de production souhaité:");
@@ -48,7 +48,7 @@ public class Main {
         
         Chaine chaine_temp = usine.getChaineparCode(nomchaine);
         chaine_temp.setNiveauActive(nivAc);        
-        int res = calcul.efficacite(chaine_temp, ELEMENT);
+        double res = calcul.efficacite(chaine_temp, ELEMENT);
     
         if(res == 0){
             System.out.println("Production impossible!");
@@ -56,8 +56,7 @@ public class Main {
         else {
             System.out.println("L'efficace de la production est: "+res);           
         }
-    
-    
        
+        ELEMENT.afficherListe();
     }
 }
