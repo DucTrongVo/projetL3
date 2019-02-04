@@ -46,7 +46,9 @@ public class Chaine {
     public Chaine () {
         
     }
-    
+    public String getNomC(){
+        return this.nomC;
+    }
     public String getCodeC(){
         return this.CodeC;
     }
@@ -63,6 +65,27 @@ public class Chaine {
     
     public HashMap<String, Double> getElementSortie(){
         return this.ElementS;
+    }
+
+    public void setCodeC(String CodeC) {
+        this.CodeC = CodeC;
+    }
+
+    public void setNomC(String nomC) {
+        this.nomC = nomC;
+    }
+
+    public void setElementE(HashMap<String, Double> ElementE) {
+        this.ElementE = ElementE;
+    }
+
+    public void setElementS(HashMap<String, Double> ElementS) {
+        this.ElementS = ElementS;
+    }
+
+
+    public void setNivActive(int NivActive) {
+        this.NivActive = NivActive;
     }
     
     
@@ -108,7 +131,34 @@ public class Chaine {
         }
         return nbProduit;
     }
-    
+    /**
+     * Ecrire la liste des elements entrees sous forme:
+     * (element,quantite)
+     * @return 
+     */
+    public String EcireElementEntree(){
+        String el = "";
+        Iterator<Map.Entry<String, Double>> ee = this.ElementE.entrySet().iterator();
+        while(ee.hasNext()){
+            Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
+            el = el + "("+a.getKey()+","+a.getValue()+") ";
+        }
+        return el;
+    }
+    /**
+     * Ecrire la liste des elements sorties sous forme:
+     * (element,quantite)
+     * @return 
+     */
+    public String EcireElementSortie(){
+        String el = "";
+        Iterator<Map.Entry<String, Double>> es = this.ElementS.entrySet().iterator();
+        while(es.hasNext()){
+            Map.Entry<String, Double> a = (Map.Entry<String, Double>)es.next();
+            el = el + "("+a.getKey()+","+a.getValue()+") ";
+        }
+        return el;
+    }
     public String toString() {
         String chaine = "";
         chaine = this.CodeC+" " +this.nomC+" /";

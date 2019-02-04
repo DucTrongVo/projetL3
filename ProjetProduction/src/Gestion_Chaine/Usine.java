@@ -5,7 +5,9 @@
  */
 package Gestion_Chaine;
 
+import Calculs.Calcul;
 import Chaine.Chaine;
+import Elements.Element;
 import static Stock.CsvFileHelper.readCsvFile;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,7 +15,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +29,7 @@ import java.util.logging.Logger;
 public class Usine {
     
     List<Chaine> Chaines;
-    private final static String RESOURCES_PATH = "/home/trongvo/NetBeansProjects/projetL3-master/ProjetProduction/src/";
+    private final static String RESOURCES_PATH = "/home/trongvo/NetBeansProjects/projetL3-master/ProjetProduction/";
     private final static String RESOURCES_PATH_SUB = "/home/trongvo/NetBeansProjects/projetL3-master/ProjetProduction/";
 
     private final static String CHAINES_FILE_NAME = "chaines.csv";
@@ -52,6 +56,10 @@ public class Usine {
             }
         }
         return c;
+    }
+    public void addChaine(Chaine c){
+        this.Chaines.add(c);
+        this.rewriteCSV();
     }
     
     /**
@@ -158,4 +166,41 @@ public class Usine {
             System.out.println("------------------CHAINES------------------");
         }
     }
+    
+    public void rewriteCSV(){
+        
+            try (FileWriter writer = new FileWriter("chaines.csv")){
+                writer.write("Code"+";"+"Nom"+";"+"Entree (code,qte)"+";"+"Sortie (code,qte)\n");
+            }catch (IOException ex) { 
+                Logger.getLogger(Calcul.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+            try (FileWriter writer2 = new FileWriter("chaines.csv",true)){
+                for (Chaine c : this.Chaines){
+                    writer2.write(c.getCodeC()+";"+c.getNomC()+";");
+                        
+                    Iterator<Map.Entry<String, Double>> ee = c.getElementEntree().entrySet().iterator();
+                    while(ee.hasNext()){
+                        Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
+                        writer2.write("("+a.getKey()+","+a.getValue()+")");
+                        if (ee.hasNext()){
+                            writer2.write(",");
+                        }
+                        }
+                    writer2.write(";");
+                        
+                    Iterator<Map.Entry<String, Double>> es = c.getElementSortie().entrySet().iterator();
+                    while(es.hasNext()){
+                        Map.Entry<String, Double> a = (Map.Entry<String, Double>)es.next();
+                        writer2.write("("+a.getKey()+","+a.getValue()+")");
+                        if (es.hasNext()){
+                            writer2.write(",");
+                        }
+                        }
+                    writer2.write("\n");
+                    }
+            } catch (IOException ex) {
+            Logger.getLogger(Usine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+        
 }

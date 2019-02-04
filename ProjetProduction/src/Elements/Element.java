@@ -112,6 +112,8 @@ public class Element {
         return this.CodeE = CodeE;
     }
     
+   
+    
     /**
      * Fonction qui fixe la valeur du nomE avec 
      * le valeur passer en paramètre

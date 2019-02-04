@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.lang.model.util.Elements;
 import static Stock.CsvFileHelper.readCsvFile;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.FileWriter;
 
 
@@ -27,7 +28,7 @@ public class Stock implements StockP{
 
     private static int nbElement = 0;
     List<Element> Stock;
-    private final static String RESOURCES_PATH = "/home/trongvo/NetBeansProjects/projetL3-master/ProjetProduction/src/";
+    private final static String RESOURCES_PATH = "/home/trongvo/NetBeansProjects/projetL3-master/ProjetProduction/";
     private final static String ELEMENTS_FILE_NAME = "elements.csv";
     private final static char SEPARATOR=';';
     
@@ -54,7 +55,10 @@ public class Stock implements StockP{
     }
  
 
-    
+    public void addElement(Element e){
+        this.Stock.add(e);
+        this.rewriteCSV();
+    }
     
     private List<Element> dataToElements(List<String[]> data){
 
@@ -105,12 +109,10 @@ public class Stock implements StockP{
     
     public void afficherListe(){
         System.out.println("LA LISTE DES ÉLÉMENTS:");
-        Iterator i=this.Stock.iterator();
-        while(i.hasNext()){
-        Element e = (Element)i.next();
-        System.out.println(e.toString());
-        System.out.println("------------------ELEMENT------------------");
-      }
+        for (Element e : this.Stock) {
+            System.out.println(e.toString());
+            System.out.println("------------------ELEMENT------------------");
+        }
     }
     
     public Element getElementparCode(String e){
@@ -155,5 +157,20 @@ public class Stock implements StockP{
     }
     
     
-
+    public void rewriteCSV(){
+        
+            try (FileWriter writer = new FileWriter("elements.csv")){
+                writer.write("Code"+";"+"Nom"+";"+"Quantite"+";"+"unite"+";"+"achat"+";"+"vente\n");
+            }catch (IOException ex) { 
+                Logger.getLogger(Calcul.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+                try (FileWriter writer2 = new FileWriter("elements.csv",true)){
+                for (Element e : this.Stock){
+		writer2.write(e.getCodeE()+";"+e.getNomE()+";"+e.getQuantiteE()+";"+e.getUMesure()+";"+e.getPrixAchat()+";"+e.getPrixVente()+"\n");
+                }
+		} catch (IOException ex) { 
+                Logger.getLogger(Calcul.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        }
+    
 }

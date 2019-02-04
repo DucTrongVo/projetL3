@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ProjetProduction">
+  <ClassDiagramComponents>
+    <Class name="Main" package="Main" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Element" package="Elements" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="CodeE" type="String" visibility="protected"/>
+        <Field name="nomE" type="String" visibility="protected"/>
+        <Field name="QuantiteE" type="double" visibility="protected"/>
+        <Field name="UMesure" type="String" visibility="protected"/>
+        <Field name="prixAchat" type="double" visibility="protected"/>
+        <Field name="prixAchat_str" type="String" visibility="protected"/>
+        <Field name="prixVente" type="double" visibility="protected"/>
+        <Field name="prixVente_str" type="String" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="CodeE"/>
+          <Argument type="String" name="nomE"/>
+          <Argument type="double" name="QuantiteE"/>
+          <Argument type="String" name="UMesure"/>
+          <Argument type="double" name="prixAchat"/>
+          <Argument type="double" name="prixVente"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="CodeE"/>
+          <Argument type="String" name="nomE"/>
+          <Argument type="double" name="QuantiteE"/>
+          <Argument type="String" name="UMesure"/>
+          <Argument type="String" name="prixAchat"/>
+          <Argument type="double" name="prixVente"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="CodeE"/>
+          <Argument type="String" name="nomE"/>
+          <Argument type="double" name="QuantiteE"/>
+          <Argument type="String" name="UMesure"/>
+          <Argument type="double" name="prixAchat"/>
+          <Argument type="String" name="prixVente"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="CodeE"/>
+          <Argument type="String" name="nomE"/>
+          <Argument type="double" name="QuantiteE"/>
+          <Argument type="String" name="UMesure"/>
+          <Argument type="String" name="prixAchat"/>
+          <Argument type="String" name="prixVente"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setCodeE" returnType="String" visibility="public">
+          <Argument type="String" name="CodeE"/>
+        </Method>
+        <Method name="setnomE" returnType="String" visibility="public">
+          <Argument type="String" name="nomE"/>
+        </Method>
+        <Method name="setQuantiteE" returnType="double" visibility="public">
+          <Argument type="double" name="quantite"/>
+        </Method>
+        <Method name="setUniteMeusre" returnType="String" visibility="public">
+          <Argument type="String" name="umesure"/>
+        </Method>
+        <Method name="setprixAchat" returnType="double" visibility="public">
+          <Argument type="double" name="prix"/>
+        </Method>
+        <Method name="setprixVente" returnType="double" visibility="public">
+          <Argument type="double" name="prix"/>
+        </Method>
+        <Method name="getCodeE" returnType="String" visibility="public"/>
+        <Method name="getNomE" returnType="String" visibility="public"/>
+        <Method name="getQuantiteE" returnType="double" visibility="public"/>
+        <Method name="getUMesure" returnType="String" visibility="public"/>
+        <Method name="getPrixAchat" returnType="double" visibility="public"/>
+        <Method name="getPrixVente" returnType="double" visibility="public"/>
+        <Method name="ecrireElementListe" returnType="void" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Usine" package="Gestion_Chaine" visibility="public" xPosition="427.0" yPosition="1177.0">
+      <Fields>
+        <Field name="Chaines" type="List&lt;Chaine&gt;" visibility="package"/>
+        <Field name="RESOURCES_PATH" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="RESOURCES_PATH_SUB" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="CHAINES_FILE_NAME" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="SOUS_ELEMENT_FILE_NAME" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="SEPARATOR" type="char" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="SEPARATOR_SUB" type="char" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getListeChaine" returnType="List&lt;Chaine&gt;" visibility="public"/>
+        <Method name="getChaineparCode" returnType="Chaine" visibility="public">
+          <Argument type="String" name="CodeC"/>
+        </Method>
+        <Method name="findChaine" returnType="List&lt;Chaine&gt;" visibility="public"/>
+        <Method name="ecrireSousListe" returnType="void" visibility="public">
+          <Argument type="String" name="liste"/>
+        </Method>
+        <Method name="findElement_sub" returnType="HashMap&lt;String, Double&gt;" visibility="public"/>
+        <Method name="dataToChaine" returnType="List&lt;Chaine&gt;" visibility="private">
+          <Argument type="List&lt;String[]&gt;" name="data"/>
+        </Method>
+        <Method name="dataToHashMap" returnType="HashMap&lt;String, Double&gt;" visibility="public">
+          <Argument type="List&lt;String[]&gt;" name="data"/>
+        </Method>
+        <Method name="afficheChaine" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Calcul" package="Calculs" visibility="public" xPosition="1355.0" yPosition="966.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="possibleProduction" returnType="boolean" visibility="public">
+          <Argument type="Chaine" name="ch"/>
+          <Argument type="Stock" name="st"/>
+        </Method>
+        <Method name="efficacite" returnType="double" visibility="public">
+          <Argument type="Chaine" name="c"/>
+          <Argument type="Stock" name="st"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Chaine" package="Chaine" visibility="public" xPosition="310.0" yPosition="678.0">
+      <Fields>
+        <Field name="CodeC" type="String" visibility="private"/>
+        <Field name="nomC" type="String" visibility="private"/>
+        <Field name="ElementE" type="HashMap&lt;String, Double&gt;" visibility="private"/>
+        <Field name="ElementS" type="HashMap&lt;String, Double&gt;" visibility="private"/>
+        <Field name="NivActive" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="CodeC"/>
+          <Argument type="String" name="nomC"/>
+          <Argument type="HashMap&lt;String, Double&gt;" name="ElementE"/>
+          <Argument type="HashMap&lt;String, Double&gt;" name="ElementS"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCodeC" returnType="String" visibility="public"/>
+        <Method name="setNiveauActive" returnType="int" visibility="public">
+          <Argument type="int" name="nb"/>
+        </Method>
+        <Method name="getNiveauActive" returnType="int" visibility="public"/>
+        <Method name="getElementEntree" returnType="HashMap&lt;String, Double&gt;" visibility="public"/>
+        <Method name="getElementSortie" returnType="HashMap&lt;String, Double&gt;" visibility="public"/>
+        <Method name="getNbProduitUtiliser" returnType="double" visibility="public">
+          <Argument type="Element" name="e"/>
+        </Method>
+        <Method name="getNbProduitCreer" returnType="double" visibility="public">
+          <Argument type="Element" name="e"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Stock" package="Stock" visibility="public" xPosition="1355.0" yPosition="350.0">
+      <Fields>
+        <Field name="nbElement" type="int" visibility="private" isStatic="true"/>
+        <Field name="Stock" type="List&lt;Element&gt;" visibility="package"/>
+        <Field name="RESOURCES_PATH" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="ELEMENTS_FILE_NAME" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="SEPARATOR" type="char" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getNbElement" returnType="int" visibility="public" isStatic="true"/>
+        <Method name="findElement" returnType="List&lt;Element&gt;" visibility="public"/>
+        <Method name="dataToElements" returnType="List&lt;Element&gt;" visibility="private">
+          <Argument type="List&lt;String[]&gt;" name="data"/>
+        </Method>
+        <Method name="afficherListe" returnType="void" visibility="public"/>
+        <Method name="getElementparCode" returnType="Element" visibility="public">
+          <Argument type="String" name="e"/>
+        </Method>
+        <Method name="soustraireStock" returnType="void" visibility="public">
+          <Argument type="Element" name="e"/>
+          <Argument type="double" name="quantite"/>
+        </Method>
+        <Method name="additionStock" returnType="void" visibility="public">
+          <Argument type="Element" name="e"/>
+          <Argument type="double" name="quantite"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="ChaineP" package="Chaine" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Methods>
+        <Method name="findElement" returnType="List&lt;Element&gt;" visibility="package"/>
+      </Methods>
+    </Interface>
+    <Interface name="StockP" package="" visibility="public" xPosition="1429.0" yPosition="116.0">
+      <Methods>
+        <Method name="findElement" returnType="List&lt;Element&gt;" visibility="package"/>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="Gestion_Chaine.Usine" target="Chaine.Chaine" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Stock.Stock" target="StockP"/>
+    <UseRelation source="Stock.Stock" target="Elements.Element" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Chaine.Chaine" target="Elements.Element" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Chaine.ChaineP" target="Elements.Element" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Chaines" source="Gestion_Chaine.Usine" target="Chaine.Chaine" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Chaine&gt;"/>
+    <UseRelation source="StockP" target="Elements.Element" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Stock" source="Stock.Stock" target="Elements.Element" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Element&gt;"/>
+    <UseRelation source="Calculs.Calcul" target="Stock.Stock" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
