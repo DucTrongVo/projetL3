@@ -55,6 +55,8 @@ public class Calcul {
             double valeurAcheter = 0, valeurVente = 0;
             String CodeE = "";
             Element e = null;
+            
+            //Parcours de l'element d'entree
             Iterator<Map.Entry<String, Double>> ee = c.getElementEntree().entrySet().iterator();
             while(ee.hasNext()){
                 Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
@@ -62,7 +64,8 @@ public class Calcul {
                 st.soustraireStock(e, c.getNbProduitUtiliser(e));
                 valeurAcheter = valeurAcheter + c.getNbProduitUtiliser(e)*e.getPrixAchat();   
             }
-
+               
+            //Parcours de lelement sortie
             Iterator<Map.Entry<String, Double>> es = c.getElementSortie().entrySet().iterator();
             while(es.hasNext()){
                 Map.Entry<String, Double> a = (Map.Entry<String, Double>)es.next();
@@ -80,16 +83,17 @@ public class Calcul {
     
     public double efficaciteNonchangeBase(Chaine c, Stock st){
         double efficacite = 0;
+        Stock tmp = st;
         
-        if (this.possibleProduction(c,st)){
+        if (this.possibleProduction(c,tmp)){
             double valeurAcheter = 0, valeurVente = 0;
             String CodeE = "";
             Element e = null;
             Iterator<Map.Entry<String, Double>> ee = c.getElementEntree().entrySet().iterator();
             while(ee.hasNext()){
                 Map.Entry<String, Double> a = (Map.Entry<String, Double>)ee.next();
-                e = st.getElementparCode(a.getKey());
-                st.soustraireStock(e, c.getNbProduitUtiliser(e));
+                e = tmp.getElementparCode(a.getKey());
+                tmp.soustraireStock(e, c.getNbProduitUtiliser(e));
                 valeurAcheter = valeurAcheter + c.getNbProduitUtiliser(e)*e.getPrixAchat();   
             }
 
@@ -97,8 +101,8 @@ public class Calcul {
             while(es.hasNext()){
                 Map.Entry<String, Double> a = (Map.Entry<String, Double>)es.next();
 
-                e = st.getElementparCode(a.getKey());
-                st.additionStock(e, c.getNbProduitCreer(e));
+                e = tmp.getElementparCode(a.getKey());
+                tmp.additionStock(e, c.getNbProduitCreer(e));
                 valeurVente = valeurVente + c.getNbProduitCreer(e)*e.getPrixVente();   
                 }  
             

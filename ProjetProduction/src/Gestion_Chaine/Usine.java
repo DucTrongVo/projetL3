@@ -89,6 +89,7 @@ public class Usine {
 			System.out.println(e+" erreur écriture!");;
 		}
     }
+    
     public HashMap<String, Double> findElement_sub() {
 
         final List<String[] > data = readCsvFile(RESOURCES_PATH_SUB + SOUS_ELEMENT_FILE_NAME, SEPARATOR_SUB);

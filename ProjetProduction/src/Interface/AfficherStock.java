@@ -6,7 +6,10 @@
 package Interface;
 
 import Elements.Element;
+import java.awt.Font;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.JTable.AUTO_RESIZE_OFF;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
  * @author trongvo
  */
 public class AfficherStock extends javax.swing.JFrame {
+    Font Bold_Italic = new Font("Serif", Font.ITALIC | Font.BOLD, 12);
+    Font Bold= new Font("Serif", Font.BOLD, 14);
+    
     DefaultTableModel model1;
     Acceuil ac = new Acceuil(); 
     
@@ -69,6 +75,11 @@ public class AfficherStock extends javax.swing.JFrame {
                 "Code", "Nom", "Quantite", "Unite Mesure", "Prix Achat", "Prix Vente"
             }
         ));
+        jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable1PropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Retourner");
@@ -78,7 +89,16 @@ public class AfficherStock extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("AJOUTER UN ELEMENT");
+        jLabel1.setBackground(java.awt.Color.lightGray);
+        jLabel1.setForeground(new java.awt.Color(0, 20, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("AJOUTER UN ÉLÉMENT:");
+        jLabel1.setOpaque(true);
+        jLabel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jLabel1PropertyChange(evt);
+            }
+        });
 
         LabelCode.setText("Code");
 
@@ -103,13 +123,7 @@ public class AfficherStock extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,22 +154,29 @@ public class AfficherStock extends javax.swing.JFrame {
                             .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelCode)
                             .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(80, 80, 80)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -184,7 +205,8 @@ public class AfficherStock extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(33, 33, 33)
                         .addComponent(jButton2)
-                        .addContainerGap(66, Short.MAX_VALUE))))
+                        .addGap(0, 54, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,22 +232,42 @@ public class AfficherStock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        while (model1.getRowCount()>0){
-            model1.removeRow(0);
+        if((txtCode.getText().equals("")) || (txtNom.getText().equals("")) || (txtQuantite.getText().equals("")) || (txtUMesure.getText().equals(""))
+                || (txtPA.getText().equals("")) || (txtPV.getText().equals(""))){
+            JOptionPane.showMessageDialog(rootPane, "Il faut remplir les champs!");
         }
-        Element e = new Element();
-        e.setCodeE(txtCode.getText());
-        e.setnomE(txtNom.getText());
-        e.setQuantiteE(Double.parseDouble(txtQuantite.getText()));
-        e.setUniteMeusre(txtUMesure.getText());
-        e.setprixAchat(Double.parseDouble(txtPA.getText()));
-        e.setprixVente(Double.parseDouble(txtPV.getText()));
-        
-        ac.stock.addElement(e);
-        
-        
-        this.showTable1();
+        else {
+            while (model1.getRowCount()>0){
+                model1.removeRow(0);
+            }
+            Element e = new Element();
+            e.setCodeE(txtCode.getText());
+            e.setnomE(txtNom.getText());
+            e.setQuantiteE(Double.parseDouble(txtQuantite.getText()));
+            e.setUniteMeusre(txtUMesure.getText());
+            e.setprixAchat(Double.parseDouble(txtPA.getText()));
+            e.setprixVente(Double.parseDouble(txtPV.getText()));
+
+            ac.stock.addElement(e);
+
+
+            this.showTable1();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jLabel1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel1PropertyChange
+        jLabel1.setFont(Bold);
+    }//GEN-LAST:event_jLabel1PropertyChange
+
+    private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
+        jTable1.setAutoResizeMode(AUTO_RESIZE_OFF);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(100);
+    }//GEN-LAST:event_jTable1PropertyChange
 
     
     public void showTable1(){
