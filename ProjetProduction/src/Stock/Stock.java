@@ -32,6 +32,10 @@ public class Stock implements StockP{
     private final static String ELEMENTS_FILE_NAME = "elements.csv";
     private final static char SEPARATOR=';';
     
+	 /**
+    *
+    * Constructeur de la classe Stock
+    */
     
     public Stock() {
     }
@@ -39,11 +43,18 @@ public class Stock implements StockP{
     
    
    
-
+	 /**
+    *
+    * Méthode get pour l'attribut nbElement qui retourne le nombre d'element dans un Stock
+    */
     public static int getNbElement() {
         return nbElement;
     }
-
+	
+ /**
+    *
+    * Méthode qui retoune une liste de elements situe dans un fichier CSV
+    */
    
     public List<Element> findElement() {
 

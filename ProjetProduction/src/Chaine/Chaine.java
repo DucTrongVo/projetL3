@@ -4,7 +4,6 @@
 package Chaine;
 
 import Elements.Element;
-import static Stock.CsvFileHelper.readCsvFile;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;

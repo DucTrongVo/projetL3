@@ -159,6 +159,11 @@ public class Usine {
         
         return element;
     }
+
+	/**
+    *
+    * Méthode pour afficher toutes les chaines contenu dans le fichiers chaine.csv
+    */
     
     public void afficheChaine(){
         System.out.println("LA LISTE DES CHAINES DE PRODUCTION:");
